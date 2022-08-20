@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,11 +30,22 @@ public class IndexController {
         Usuario usuario = new Usuario();
         usuario.setNombre("Jorge");
         usuario.setApellido("Barcos");
+        usuario.setEmail("jorge@correo.com");
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", "Perfil del usuario: ".concat(usuario.getNombre()));
 
         return "perfil";
+    }
+
+    @RequestMapping("/listar")
+    public String listar(Model model) {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        model.addAttribute("titulo", "Listado de usuarios");
+        model.addAttribute("usuarios", usuarios);
+
+        return "listar";
     }
 
     /******OTRAS FORMAS DE RETORNAR DATOS A LA VISTA******/
